@@ -1,14 +1,14 @@
 class constraint 
 {
-    constructor(bodyA,bodyB)
+    constructor(bodyA,pointB)
     {
 
     var options=
     {
         bodyA:bodyA,
-        bodyB:bodyB,
+        pointB:pointB,
         length:10,
-        stiffness:0.05
+        stiffness:0.08
 
     }
 
@@ -16,11 +16,23 @@ class constraint
 
     this.chain=Constraint.create(options);
     World.add(world,this.chain);
-
     }
+
+    fly()
+    {
+        this.chain.bodyA=null;
+    }
+
+    
 
     display()
     {
-        line(this.chain.bodyA.position.x,this.chain.bodyA.position.y,this.chain.bodyB.position.x,this.chain.bodyB.position.y);
+       
+
+        if(this.chain.bodyA)
+        {
+            strokeWeight(3);
+            line(this.chain.bodyA.position.x,this.chain.bodyA.position.y,this.chain.pointB.x,this.chain.pointB.y);
+        }
     }
 }
